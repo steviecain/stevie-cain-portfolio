@@ -247,15 +247,6 @@ body.page-about::after { opacity: 0.16; mix-blend-mode: multiply; }
 
 .chapter-body { border-bottom: 0; min-height: calc(var(--u) * 50); }
 .chapter-body .side { position: relative; overflow: hidden; padding: 0; margin-left: calc(var(--pad-x) * -1); }
-.numeral {
-  position: absolute; left: 0; top: calc(var(--u) * 3);
-  font-weight: 700; font-size: calc(var(--u) * 46); line-height: 0.78; letter-spacing: -0.06em;
-  color: var(--text);
-}
-.numeral.outline {
-  color: transparent; -webkit-text-stroke: 1px var(--text);
-  transform: translate(calc(var(--u) * -3), calc(var(--u) * -1.2));
-}
 .chapter-body .main { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); column-gap: var(--u); align-content: start; padding-block: calc(var(--u) * 0.6) calc(var(--u) * 4); }
 .chapter-title {
   grid-column: 1 / -1;
@@ -289,9 +280,8 @@ body.page-about::after { opacity: 0.16; mix-blend-mode: multiply; }
 }
 .chapters.is-stacked .chapter-head { position: relative; top: auto; margin-top: 0; border-bottom: 0; }
 .chapters.is-stacked .chapter-body { min-height: 0; height: 100%; border-top: 1px solid var(--line); }
-.chapters.is-stacked .numeral { top: calc(var(--u) * 1.5); }
 
-/* Chapter icons: animated line icons drawn at the same scale as the numerals.
+/* Chapter icons: animated line icons drawn large in the left column.
    Icons from Moving Icons (MIT, (c) 2024 jis3r), based on Lucide (ISC).
    Each animates while its chapter is the open one (.is-current). */
 .chapter-icon {
@@ -301,11 +291,6 @@ body.page-about::after { opacity: 0.16; mix-blend-mode: multiply; }
 }
 .chapters.is-stacked .chapter-icon { top: calc(var(--u) * 2.7); }
 .chapter-icon svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.chapter-icon-echo {
-  transform: translate(calc(var(--u) * -3), calc(var(--u) * -1.2));
-  stroke-width: 1px; opacity: .9;
-}
-.chapter-icon-echo * { vector-effect: non-scaling-stroke; }
 
 /* Rocket: drifts and the flame flickers, on a loop */
 .is-current .mi-rocket .chapter-icon-main > path { animation: mi-rocket 6s ease-in-out infinite alternate; }
@@ -347,6 +332,14 @@ body.page-about::after { opacity: 0.16; mix-blend-mode: multiply; }
 .is-current .mi-question .chapter-icon-main .mi-question-mark { animation: mi-question-mark .8s ease-in-out .15s; }
 @keyframes mi-question { 0% { transform: rotate(0); } 40% { transform: rotate(8deg); } 60% { transform: rotate(-8deg); } 80% { transform: rotate(2deg); } 100% { transform: rotate(0); } }
 @keyframes mi-question-mark { 0% { transform: translateY(0); } 40% { transform: translateY(1px); } 70% { transform: translateY(-.25px); } 100% { transform: translateY(0); } }
+
+/* Badge: squeezes in while the tick redraws */
+.mi-badge .mi-badge-shape { transform-origin: center; }
+.mi-badge .mi-badge-check { stroke-dasharray: 10; stroke-dashoffset: 0; }
+.is-current .mi-badge .mi-badge-shape { animation: mi-badge 1.2s ease-in-out .15s; }
+.is-current .mi-badge .mi-badge-check { animation: mi-badge-check 1.2s ease-in-out .15s; }
+@keyframes mi-badge { 0%, 100% { transform: scale(1); } 50% { transform: scale(.9); } }
+@keyframes mi-badge-check { 0%, 100% { stroke-dashoffset: 0; } 50% { stroke-dashoffset: 10; } }
 
 @media (prefers-reduced-motion: reduce) {
   .chapter-icon * { animation: none !important; }
