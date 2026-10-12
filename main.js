@@ -108,6 +108,123 @@
     strip.addEventListener('dragstart', e => e.preventDefault());
   }
 
+  // ---------- About: stacked chapters ----------
+  // The stage pins under the top bar. Closed chapters wait as title bars along
+  // the bottom; each screen of scroll slides the next one up over the last,
+  // which is left as a thin sliver at the top.
+  const chapters = document.querySelector('.chapters');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (chapters) {
+    const stage = chapters.querySelector('.chapters-stage');
+    const panels = [...chapters.querySelectorAll('.chapter-panel')];
+    const n = panels.length;
+    const SLIVER = 10;
+    let on = false, step = 0, stageH = 0, headH = 0, ticking = false;
+
+    const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+    const sectionTop = () => chapters.getBoundingClientRect().top + window.scrollY;
+
+    const render = () => {
+      ticking = false;
+      if (!on) return;
+      const p = clamp((window.scrollY - sectionTop() + bar.offsetHeight) / step, 0, n - 1);
+      panels.forEach((panel, i) => {
+        const open = i * SLIVER;
+        const rest = stageH - (n - i) * headH;
+        const t = i === 0 ? 1 : ease(clamp(p - (i - 1), 0, 1));
+        panel.style.transform = `translateY(${rest + (open - rest) * t}px)`;
+        panel.style.setProperty('--dim', clamp(p - i, 0, 1).toFixed(3));
+      });
+    };
+
+    const layout = () => {
+      on = desktop.matches && !reduceMotion.matches;
+      chapters.classList.toggle('is-stacked', on);
+      chapters.style.height = '';
+      panels.forEach((panel, i) => {
+        panel.style.transform = '';
+        panel.style.height = '';
+        panel.style.zIndex = '';
+      });
+      if (!on) return;
+      stageH = stage.clientHeight;
+      headH = panels[0].querySelector('.chapter-head').offsetHeight;
+      step = window.innerHeight;
+      chapters.style.height = stageH + (n - 1) * step + 'px';
+      panels.forEach((panel, i) => {
+        panel.style.height = stageH - i * SLIVER + 'px';
+        panel.style.zIndex = i + 1;
+      });
+      render();
+    };
+
+    window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(render); } }, { passive: true });
+    window.addEventListener('resize', layout);
+    desktop.addEventListener('change', layout);
+    reduceMotion.addEventListener('change', layout);
+    layout();
+    if (document.fonts) document.fonts.ready.then(layout);
+
+    // Links to a chapter scroll to the point where that chapter is fully open
+    const goToChapter = (id, smooth) => {
+      const i = panels.findIndex(panel => panel.id === id);
+      if (i < 0 || !on) return false;
+      window.scrollTo({ top: sectionTop() - bar.offsetHeight + i * step, behavior: smooth ? 'smooth' : 'instant' });
+      return true;
+    };
+    document.addEventListener('click', e => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      if (goToChapter(a.getAttribute('href').slice(1), true)) {
+        e.preventDefault();
+        history.replaceState(null, '', a.getAttribute('href'));
+      }
+    });
+    // The browser's own jump to the hash can land after load, so settle on
+    // the chapter position once it has run
+    if (location.hash && panels.some(panel => '#' + panel.id === location.hash)) {
+      const id = location.hash.slice(1);
+      const jump = () => goToChapter(id, false);
+      window.addEventListener('load', () => { jump(); requestAnimationFrame(jump); setTimeout(jump, 120); });
+    }
+  }
+
+  // ---------- About: quotes ----------
+  const quotes = document.querySelector('.quotes');
+  if (quotes) {
+    const slides = [...quotes.querySelector('template[data-quotes]').content.querySelectorAll('figure')];
+    const out = {
+      text: quotes.querySelector('[data-quote-text]'),
+      name: quotes.querySelector('[data-quote-name]'),
+      role: quotes.querySelector('[data-quote-role]'),
+      count: quotes.querySelector('[data-quote-count]'),
+    };
+    const pad = n => String(n).padStart(2, '0');
+    let q = 0, qTimer;
+    const show = i => {
+      q = (i + slides.length) % slides.length;
+      quotes.classList.add('fading');
+      clearTimeout(qTimer);
+      qTimer = setTimeout(() => {
+        const f = slides[q];
+        out.text.textContent = f.textContent.trim();
+        out.name.textContent = f.dataset.name;
+        out.role.textContent = f.dataset.role;
+        out.count.textContent = `${pad(q + 1)}/${pad(slides.length)}`;
+        quotes.classList.remove('fading');
+      }, 250);
+    };
+    out.count.textContent = `01/${pad(slides.length)}`;
+    quotes.querySelector('[data-quote-prev]').addEventListener('click', () => show(q - 1));
+    quotes.querySelector('[data-quote-next]').addEventListener('click', () => show(q + 1));
+    quotes.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') show(q - 1);
+      if (e.key === 'ArrowRight') show(q + 1);
+    });
+  }
+
   // ---------- Contact drawer ----------
   const drawerHTML = `
     <div class="drawer-backdrop" data-close></div>

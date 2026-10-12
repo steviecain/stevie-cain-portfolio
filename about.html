@@ -35,8 +35,8 @@
         <p>Contents:</p>
         <ol class="contents">
           <li><a href="#profile">01. Profile</a></li>
-          <li><a href="#experience">02. Experience</a></li>
-          <li><a href="#skills">03. Skills &amp; certifications</a></li>
+          <li><a href="#experience">02. Experience &amp; skills</a></li>
+          <li><a href="#quotes">03. What others say about me</a></li>
           <li><a href="#talk">04. Let's get in touch</a></li>
         </ol>
         <div class="interests">
@@ -58,10 +58,11 @@
       <p class="big-statement">I'm passionate about delivering purposeful outcomes at pace and leading cross-functional teams by inspiring others to grow and be their best. I build teams around trust, psychological safety and growth mindsets, and embrace a "think big, ship small" approach to unlock potential, deliver meaningful innovation and drive continuous improvement.</p>
     </section>
 
-    <!-- Experience chapters -->
-    <div id="experience">
+    <!-- Experience chapters: on desktop these stack and open as you scroll -->
+    <section class="chapters" id="experience" aria-label="Experience and skills">
+      <div class="chapters-stage">
 
-      <section class="chapter" id="atomic-web">
+      <section class="chapter chapter-panel" id="atomic-web">
         <div class="row chapter-head">
           <span class="num">01.</span>
           <span class="title">Director &amp; Founder, Atomic Web</span>
@@ -84,7 +85,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="nzte-ddm">
+      <section class="chapter chapter-panel" id="nzte-ddm">
         <div class="row chapter-head">
           <span class="num">02.</span>
           <span class="title">Digital Delivery Manager, NZTE</span>
@@ -111,7 +112,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="nzte-covid">
+      <section class="chapter chapter-panel" id="nzte-covid">
         <div class="row chapter-head">
           <span class="num">03.</span>
           <span class="title">COVID-19 Exporters Website Delivery Lead, NZTE</span>
@@ -134,7 +135,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="nzte-marketing">
+      <section class="chapter chapter-panel" id="nzte-marketing">
         <div class="row chapter-head">
           <span class="num">04.</span>
           <span class="title">Marketing Coordinator, NZTE</span>
@@ -157,7 +158,7 @@
         </div>
       </section>
 
-      <section class="chapter" id="consultant">
+      <section class="chapter chapter-panel" id="consultant">
         <div class="row chapter-head">
           <span class="num">05.</span>
           <span class="title">Digital Consultant, Oxford UK</span>
@@ -180,10 +181,8 @@
           </div>
         </div>
       </section>
-    </div>
 
-    <!-- Skills and certifications -->
-    <section class="chapter" id="skills">
+    <section class="chapter chapter-panel" id="skills">
       <div class="row chapter-head">
         <span class="num">06.</span>
         <span class="title">Skills &amp; certifications</span>
@@ -217,6 +216,40 @@
           </div>
         </div>
       </div>
+    </section>
+
+      </div>
+    </section>
+
+    <!-- Quotes (placeholders until real quotes are added) -->
+    <section class="quotes" id="quotes" aria-roledescription="carousel" aria-label="What colleagues, coworkers and clients say about me">
+      <div class="row quotes-head">
+        <span class="side" aria-hidden="true">●</span>
+        <p class="main no-rule">What colleagues, coworkers<br>and clients say about me</p>
+      </div>
+      <div class="row quotes-body">
+        <div class="cell side">
+          <div class="quote-nav">
+            <div class="quote-arrows">
+              <button type="button" class="quote-btn" data-quote-prev aria-label="Previous quote">←</button>
+              <button type="button" class="quote-btn" data-quote-next aria-label="Next quote">→</button>
+            </div>
+            <span class="quote-count" data-quote-count>01/03</span>
+          </div>
+          <div class="quote-who">
+            <span data-quote-name>Colleague name</span>
+            <span data-quote-role class="label">Role, Company</span>
+          </div>
+        </div>
+        <div class="cell main no-rule">
+          <blockquote class="quote-text" data-quote-text aria-live="polite">“Add a quote from a colleague here. Two or three sentences on what it was like to work with Stevie.”</blockquote>
+        </div>
+      </div>
+      <template data-quotes>
+        <figure data-name="Colleague name" data-role="Role, Company">“Add a quote from a colleague here. Two or three sentences on what it was like to work with Stevie.”</figure>
+        <figure data-name="Team member name" data-role="Role, Company">“Add a quote from someone in your team here. What changed for them while working with you?”</figure>
+        <figure data-name="Client or partner name" data-role="Role, Company">“Add a quote from a client or partner here. What did your delivery make possible for them?”</figure>
+      </template>
     </section>
 
     <!-- Contact -->

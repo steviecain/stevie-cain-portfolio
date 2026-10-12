@@ -9,7 +9,7 @@ Plain static HTML, CSS and JS. No build step.
 | File | What it is |
 | --- | --- |
 | `index.html` | Landing page: hero and the selected work carousel. On desktop it fills exactly one screen and the mouse wheel steps through the work |
-| `about.html` | Light About page: contents, profile statement, experience chapters, skills and contact cards |
+| `about.html` | Light About page: contents, profile statement, experience chapters that stack as you scroll, quotes and contact cards |
 | `styles.css` | Shared styles for both pages |
 | `main.js` | Work carousel (wheel, swipe, drag, arrow keys) and the contact drawer |
 | `assets/` | Images (Atomic Web logo) |
@@ -35,6 +35,8 @@ npx serve .
 **Work panel text.** The Company, Role, Year and summary shown beside the carousel come from each tile's `data-company`, `data-role`, `data-year` and `data-summary` attributes.
 
 **Layout.** Sizes follow a 12 column grid that scales with the browser width. Everything is based on `--u` in `styles.css` (13.33px on a 1440px wide screen).
+
+**Quotes.** The quotes on the About page are placeholders. Edit the `<figure>` entries inside `<template data-quotes>` in `about.html`: the text is the quote, `data-name` and `data-role` are the person. Add or remove entries and the counter updates itself.
 
 **Contact form.** The drawer form opens the visitor's email app with a pre-filled message to steviecain@outlook.com. To change the address, edit `EMAIL` at the top of `main.js`.
 

@@ -268,6 +268,57 @@ body.page-about::after { opacity: 0.16; mix-blend-mode: multiply; }
 .chapter-col .pair { display: flex; justify-content: space-between; gap: var(--u); }
 .chapter-col .pair span:last-child { color: var(--muted); text-align: right; }
 
+/* Chapter stack (desktop): the stage pins under the top bar and each
+   chapter slides up over the previous one as the page scrolls */
+.chapters { position: relative; }
+.chapters.is-stacked .chapters-stage {
+  position: sticky; top: var(--bar-h, 44px);
+  height: calc(100vh - var(--bar-h, 44px));
+  height: calc(100svh - var(--bar-h, 44px));
+  overflow: hidden;
+}
+.chapters.is-stacked .chapter-panel {
+  position: absolute; left: 0; right: 0; top: 0;
+  background: var(--bg);
+  overflow: hidden;
+  will-change: transform;
+}
+.chapters.is-stacked .chapter-panel::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  background: #000; opacity: calc(var(--dim, 0) * 0.08);
+}
+.chapters.is-stacked .chapter-head { position: relative; top: auto; margin-top: 0; border-bottom: 0; }
+.chapters.is-stacked .chapter-body { min-height: 0; height: 100%; border-top: 1px solid var(--line); }
+.chapters.is-stacked .numeral { top: calc(var(--u) * 1.5); }
+
+/* Quotes */
+.quotes { border-top: 1px solid var(--line); }
+.quotes-head { border-bottom: 0; padding-block: var(--u) calc(var(--u) * 6); align-items: start; }
+.quotes-head .side { font-size: calc(var(--u) * 0.8); padding-top: 2px; }
+.quotes-body { border-bottom: 0; padding-bottom: calc(var(--u) * 10); }
+.quote-nav { display: flex; justify-content: space-between; align-items: center; padding-bottom: calc(var(--u) * 0.5); border-bottom: 1px solid var(--line); }
+.quote-arrows { display: flex; gap: 4px; }
+.quote-btn {
+  background: none; border: 0; cursor: pointer; padding: 2px 4px;
+  font-size: var(--u); font-weight: 600; line-height: 1;
+}
+.quote-btn:hover { color: var(--muted); }
+.quote-btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.quote-count { font-variant-numeric: tabular-nums; }
+.quote-who { display: flex; justify-content: space-between; gap: var(--u); padding-top: calc(var(--u) * 0.5); }
+.quote-who [data-quote-role] { text-align: right; }
+.quote-text {
+  grid-column: 1 / -1;
+  max-width: 15.5em;
+  font-weight: 700;
+  font-size: calc(var(--u) * 4.375);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  transition: opacity .3s ease;
+}
+.quotes.fading .quote-text, .quotes.fading .quote-who { opacity: 0; }
+.quote-who { transition: opacity .3s ease; }
+
 .talk { border-top: 1px solid var(--line); border-bottom: 0; }
 .talk .cell { padding-block: var(--u); }
 .talk .cards { grid-column: 4 / 13; display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); column-gap: var(--u); }
@@ -336,6 +387,11 @@ footer .main { border-left-color: transparent; }
   .chapter-body { min-height: 0; }
   .chapter-body .side { display: none; }
   .chapter-body .spacer { display: none; }
+  .quotes-head { padding-block: 16px 24px; grid-template-columns: auto 1fr; column-gap: 12px; }
+  .quotes-head .side, .quotes-head .main { grid-column: auto; border-top: 0; }
+  .quotes-body { padding-bottom: 48px; }
+  .quotes-body .main { padding-top: 24px; }
+  .quote-text { font-size: 34px; }
   .chapter-body .main { border-top: 0; padding-top: 16px; }
   .chapter-title { font-size: 32px; margin-bottom: 12px; }
   .talk .side { padding-bottom: 0; }
