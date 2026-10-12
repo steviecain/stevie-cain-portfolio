@@ -8,10 +8,10 @@ Plain static HTML, CSS and JS. No build step.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | Landing page: hero and the selected work carousel |
-| `about.html` | Profile, experience, skills and certifications |
+| `index.html` | Landing page: hero and the selected work carousel. On desktop it fills exactly one screen and the mouse wheel steps through the work |
+| `about.html` | Light About page: contents, profile statement, experience chapters, skills and contact cards |
 | `styles.css` | Shared styles for both pages |
-| `main.js` | Carousel, contact drawer and form, scroll reveals |
+| `main.js` | Work carousel (wheel, swipe, drag, arrow keys) and the contact drawer |
 | `assets/` | Images (Atomic Web logo) |
 
 ## Run locally
@@ -33,6 +33,8 @@ npx serve .
 **Project tile links.** Each tile in `index.html` is an `<a class="tile" href="...">`. The Atomic Web tile links to atomicweb.co.nz. The others currently link to their role on `about.html` (for example `about.html#nzte-ddm`). Change the `href` to point at a live site or a project detail page.
 
 **Work panel text.** The Company, Role, Year and summary shown beside the carousel come from each tile's `data-company`, `data-role`, `data-year` and `data-summary` attributes.
+
+**Layout.** Sizes follow a 12 column grid that scales with the browser width. Everything is based on `--u` in `styles.css` (13.33px on a 1440px wide screen).
 
 **Contact form.** The drawer form opens the visitor's email app with a pre-filled message to steviecain@outlook.com. To change the address, edit `EMAIL` at the top of `main.js`.
 

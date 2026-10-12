@@ -7,19 +7,18 @@
   <meta name="description" content="Stevie Cain is an Agile Digital Delivery Manager and founder of Atomic Web, based in Auckland, New Zealand. Leading high performing teams that think big and ship small.">
   <meta property="og:title" content="Stevie Cain | Agile Digital Delivery Manager">
   <meta property="og:description" content="Stevie Cain is an Agile Digital Delivery Manager and founder of Atomic Web, based in Auckland, New Zealand. Leading high performing teams that think big and ship small.">
-  <meta name="theme-color" content="#262626">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23262626'/%3E%3Ctext x='50%25' y='56%25' font-family='Arial' font-weight='700' font-size='30' fill='%23F9FAFB' text-anchor='middle' dominant-baseline='middle'%3Es.c%3C/text%3E%3C/svg%3E">
+  <meta name="theme-color" content="#343131">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23343131'/%3E%3Ctext x='50%25' y='56%25' font-family='Arial' font-weight='700' font-size='30' fill='%23F9FAFB' text-anchor='middle' dominant-baseline='middle'%3Es.c%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="landing">
 
-  <!-- Top bar -->
   <header class="row topbar">
-    <div class="cell"><a href="index.html" class="logo" aria-label="Stevie Cain, home">s.c</a></div>
-    <div class="cell">
+    <div class="cell side"><a href="index.html" class="logo" aria-label="Stevie Cain, home">s.c</a></div>
+    <div class="cell main">
       <nav class="nav" aria-label="Primary">
         <a href="index.html" class="active" aria-current="page">Work</a>
         <a href="about.html">About</a>
@@ -37,46 +36,34 @@
           <div class="monogram" role="img" aria-label="Stevie Cain monogram">SC</div>
           <span class="status-dot" aria-hidden="true"></span>
         </div>
-        <div class="hero-bottom">
-          <dl class="meta">
-            <dt>Role:</dt>
-            <dd>Agile Digital Delivery Manager</dd>
-          </dl>
-          <dl class="meta" style="text-align:right">
-            <dt>Based:</dt>
-            <dd>Auckland, NZ</dd>
-          </dl>
+        <div class="cell-foot">
+          <dl class="meta"><dt>Role:</dt><dd>Agile Digital Delivery Manager</dd></dl>
+          <dl class="meta" style="text-align:right"><dt>Based:</dt><dd>Auckland, NZ</dd></dl>
         </div>
       </div>
-      <div class="cell">
+      <div class="cell main">
         <div class="statement-wrap">
           <span class="arrow" aria-hidden="true">↳</span>
           <h1 class="statement">Stevie Cain leads high performing teams that think big, ship small and deliver purposeful outcomes at pace.</h1>
         </div>
-        <div class="hero-bottom">
-          <dl class="meta">
-            <dt>Currently:</dt>
-            <dd>Director &amp; Founder, Atomic Web</dd>
-          </dl>
-          <a href="#workPin" class="scroll-cue">Scroll</a>
+        <div class="cell-foot">
+          <dl class="meta"><dt>Currently:</dt><dd>Director &amp; Founder, Atomic Web</dd></dl>
+          <span class="scroll-cue">Scroll</span>
         </div>
       </div>
     </section>
 
-    <!-- Selected work: page scroll drives the strip sideways on desktop -->
-    <div class="work-pin" id="workPin">
+    <!-- Selected work -->
     <section class="row work" id="work" aria-label="Selected work">
       <div class="cell side">
-        <div>
-          <div class="work-meta-top">
-            <div class="work-meta" id="workMeta">
-              <dl class="meta"><dt>Company:</dt><dd data-k="company">Atomic Web Limited</dd></dl>
-              <dl class="meta"><dt>Role:</dt><dd data-k="role">Director &amp; Founder</dd></dl>
-              <dl class="meta"><dt>Year:</dt><dd data-k="year">2024 to Present</dd></dl>
-              <p class="work-summary" data-k="summary">Founded a New Zealand software company building portal software used by sports teams and organisations.</p>
-            </div>
-            <a href="about.html#experience" class="contact-link" style="align-self:flex-start;white-space:nowrap">View Detail</a>
+        <div class="work-meta-top">
+          <div class="work-meta" id="workMeta" aria-live="polite">
+            <dl class="meta"><dt>Company:</dt><dd data-k="company">Atomic Web Limited</dd></dl>
+            <dl class="meta"><dt>Role:</dt><dd data-k="role">Director &amp; Founder</dd></dl>
+            <dl class="meta"><dt>Year:</dt><dd data-k="year">2024 to Present</dd></dl>
+            <p class="work-summary" data-k="summary">Founded a New Zealand software company building portal software used by sports teams and organisations.</p>
           </div>
+          <a href="about.html#experience" style="white-space:nowrap">View Detail</a>
         </div>
         <div class="shapes" aria-hidden="true">
           <span class="shape-circle"></span>
@@ -84,78 +71,79 @@
         </div>
       </div>
 
-      <div class="cell strip-cell">
+      <div class="cell main">
         <span class="counter" id="counter">01/05</span>
-        <div class="strip" id="strip" aria-label="Selected projects">
+        <div class="strip-viewport" id="stripViewport">
+          <div class="strip" id="strip" aria-label="Selected projects">
 
-          <a class="tile lead t-atomic" href="https://atomicweb.co.nz" target="_blank" rel="noopener" draggable="false"
-            aria-label="Atomic Web portal software, visit atomicweb.co.nz (opens in a new tab)"
-            data-company="Atomic Web Limited" data-role="Director &amp; Founder" data-year="2024 to Present"
-            data-summary="Founded a New Zealand software company building portal software used by sports teams and organisations.">
-            <img class="logo-mark" src="assets/atomic-web-logo.png" alt="" draggable="false">
-            <span class="tile-kicker">Atomic Web<br>Portal Software</span>
-            <span class="tile-big">Game<br>day,<br><span>sorted.</span></span>
-            <span class="tile-go" aria-hidden="true">↗</span>
-          </a>
+            <a class="tile is-active t-atomic" href="https://atomicweb.co.nz" target="_blank" rel="noopener" draggable="false"
+              aria-label="Atomic Web portal software, visit atomicweb.co.nz (opens in a new tab)"
+              data-company="Atomic Web Limited" data-role="Director &amp; Founder" data-year="2024 to Present"
+              data-summary="Founded a New Zealand software company building portal software used by sports teams and organisations.">
+              <img class="logo-mark" src="assets/atomic-web-logo.png" alt="" draggable="false">
+              <span class="tile-kicker">Atomic Web<br>Portal Software</span>
+              <span class="tile-big">Game<br>day,<br><span>sorted.</span></span>
+              <span class="tile-pill" aria-hidden="true">Visit site ↗</span>
+            </a>
 
-          <a class="tile t-invest" href="about.html#nzte-ddm" draggable="false"
-            aria-label="NZTE investment platforms, $40m+ facilitated"
-            data-company="New Zealand Trade &amp; Enterprise" data-role="Digital Delivery Manager" data-year="2021 to Present"
-            data-summary="End to end delivery of investment platforms aligned with NZTE strategy.">
-            <span class="bars" aria-hidden="true"><span style="height:35%"></span><span style="height:60%"></span><span style="height:100%"></span></span>
-            <span class="tile-kicker">Investment<br>platforms</span>
-            <div>
-              <div class="tile-big">$40m+</div>
-              <div class="tile-cap">investment facilitated into NZ companies</div>
-            </div>
-            <span class="tile-go" aria-hidden="true">→</span>
-          </a>
+            <a class="tile t-invest" href="about.html#nzte-ddm" draggable="false"
+              aria-label="NZTE investment platforms, $40m+ facilitated"
+              data-company="New Zealand Trade &amp; Enterprise" data-role="Digital Delivery Manager" data-year="2021 to Present"
+              data-summary="End to end delivery of investment platforms aligned with NZTE strategy.">
+              <span class="bars" aria-hidden="true"><span style="height:35%"></span><span style="height:60%"></span><span style="height:100%"></span></span>
+              <span class="tile-kicker">Investment<br>platforms</span>
+              <div>
+                <div class="tile-big">$40m+</div>
+                <div class="tile-cap">investment facilitated into NZ companies</div>
+              </div>
+              <span class="tile-pill" aria-hidden="true">View detail</span>
+            </a>
 
-          <a class="tile t-covid" href="about.html#nzte-covid" draggable="false"
-            aria-label="COVID-19 Exporters website, 500k pageviews in 12 months"
-            data-company="New Zealand Trade &amp; Enterprise" data-role="Website Delivery Lead" data-year="2019 to 2021"
-            data-summary="Spearheaded the COVID-19 response website for New Zealand exporters.">
-            <span class="blob" aria-hidden="true"></span>
-            <span class="tile-kicker">COVID-19<br>Exporters site</span>
-            <span class="tile-big">500k</span>
-            <span class="tile-cap">pageviews in 12 months</span>
-            <span class="tile-go" aria-hidden="true">→</span>
-          </a>
+            <a class="tile t-covid" href="about.html#nzte-covid" draggable="false"
+              aria-label="COVID-19 Exporters website, 500k pageviews in 12 months"
+              data-company="New Zealand Trade &amp; Enterprise" data-role="Website Delivery Lead" data-year="2019 to 2021"
+              data-summary="Spearheaded the COVID-19 response website for New Zealand exporters.">
+              <span class="blob" aria-hidden="true"></span>
+              <span class="tile-kicker">COVID-19<br>Exporters site</span>
+              <span class="tile-big">500k</span>
+              <span class="tile-cap">pageviews in 12 months</span>
+              <span class="tile-pill" aria-hidden="true">View detail</span>
+            </a>
 
-          <a class="tile t-micro" href="about.html#nzte-marketing" draggable="false"
-            aria-label="NZTE micro-sites and campaigns"
-            data-company="New Zealand Trade &amp; Enterprise" data-role="Marketing Coordinator" data-year="2018 to 2019"
-            data-summary="Micro-sites and campaign pages for Expo 2020, NZIBA and the International Trade website.">
-            <span class="tile-kicker">Micro-sites &amp;<br>campaigns</span>
-            <span class="stickers" aria-hidden="true">
-              <span>EXPO 2020®</span><span>NZIBA®</span><span>EXPO 2020®</span><span>TRADE®</span>
-            </span>
-            <span class="tile-cap" style="color:var(--c-pink)">Telling NZ brand stories</span>
-            <span class="tile-go" aria-hidden="true">→</span>
-          </a>
+            <a class="tile t-micro" href="about.html#nzte-marketing" draggable="false"
+              aria-label="NZTE micro-sites and campaigns"
+              data-company="New Zealand Trade &amp; Enterprise" data-role="Marketing Coordinator" data-year="2018 to 2019"
+              data-summary="Micro-sites and campaign pages for Expo 2020, NZIBA and the International Trade website.">
+              <span class="tile-kicker">Micro-sites &amp;<br>campaigns</span>
+              <span class="stickers" aria-hidden="true">
+                <span>EXPO 2020®</span><span>NZIBA®</span><span>EXPO 2020®</span><span>TRADE®</span>
+              </span>
+              <span class="tile-cap">Telling NZ brand stories</span>
+              <span class="tile-pill" aria-hidden="true">View detail</span>
+            </a>
 
-          <a class="tile t-uk" href="about.html#consultant" draggable="false"
-            aria-label="E-commerce and SEO consulting, Oxford UK"
-            data-company="UK startup retailers" data-role="Digital Consultant" data-year="2014 to 2018"
-            data-summary="Designed and managed e-commerce platforms and SEO for startup retailers across the UK.">
-            <span class="tri" aria-hidden="true"></span>
-            <span class="tile-kicker">E-commerce<br>&amp; SEO</span>
-            <div>
-              <div class="tile-big">Oxford,<br>UK</div>
-              <div class="tile-cap">Self employed</div>
-            </div>
-            <span class="tile-go" aria-hidden="true">→</span>
-          </a>
+            <a class="tile t-uk" href="about.html#consultant" draggable="false"
+              aria-label="E-commerce and SEO consulting, Oxford UK"
+              data-company="UK startup retailers" data-role="Digital Consultant" data-year="2014 to 2018"
+              data-summary="Designed and managed e-commerce platforms and SEO for startup retailers across the UK.">
+              <span class="tri" aria-hidden="true"></span>
+              <span class="tile-kicker">E-commerce<br>&amp; SEO</span>
+              <div>
+                <div class="tile-big">Oxford,<br>UK</div>
+                <div class="tile-cap">Self employed</div>
+              </div>
+              <span class="tile-pill" aria-hidden="true">View detail</span>
+            </a>
 
+          </div>
         </div>
       </div>
     </section>
-    </div>
   </main>
 
   <footer class="row">
-    <div class="cell"><span>© <span id="yr">2026</span> Stevie Cain</span></div>
-    <div class="cell"><span>Auckland, NZ</span><a href="#top">Back to top ↑</a></div>
+    <div class="cell side"><span>© <span data-year-now>2026</span> Stevie Cain</span></div>
+    <div class="cell main"><span>Auckland, NZ</span><a href="#top">Back to top ↑</a></div>
   </footer>
 
   <script src="main.js"></script>

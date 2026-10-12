@@ -1,119 +1,110 @@
 (() => {
   const EMAIL = 'steviecain@outlook.com';
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const wide = window.matchMedia('(min-width: 801px)');
+  const desktop = window.matchMedia('(min-width: 801px)');
 
-  const yr = document.getElementById('yr');
-  if (yr) yr.textContent = new Date().getFullYear();
+  document.querySelectorAll('[data-year-now]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
-  // Keep the sticky offset in step with the real top bar height
+  // Sticky offsets follow the real top bar height
   const bar = document.querySelector('.topbar');
   const setBarH = () => document.documentElement.style.setProperty('--bar-h', bar.offsetHeight + 'px');
   setBarH();
   window.addEventListener('resize', setBarH);
 
-  // ---------- Reveal on scroll ----------
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
   // ---------- Work carousel ----------
-  const pin = document.getElementById('workPin');
+  // One tile is active at a time: it fills the row height and the rest sit
+  // small beside it. Wheel, swipe, drag, arrow keys and clicks step through.
+  const viewport = document.getElementById('stripViewport');
   const strip = document.getElementById('strip');
 
-  if (pin && strip) {
+  if (viewport && strip) {
     const tiles = [...strip.querySelectorAll('.tile')];
     const counter = document.getElementById('counter');
     const meta = document.getElementById('workMeta');
     const pad = n => String(n).padStart(2, '0');
-    let current = 0;
-    let pinned = false;
+    let index = 0;
+    let fadeTimer;
 
-    const setActive = i => {
-      if (i === current) return;
-      current = i;
+    const sizeRow = () => strip.style.setProperty('--row-h', viewport.clientHeight + 'px');
+    sizeRow();
+    window.addEventListener('resize', sizeRow);
+    window.addEventListener('load', sizeRow);
+
+    const go = i => {
+      i = Math.max(0, Math.min(tiles.length - 1, i));
+      if (i === index) return false;
+      index = i;
+      strip.style.setProperty('--i', i);
+      tiles.forEach((t, n) => {
+        t.classList.toggle('is-active', n === i);
+        t.tabIndex = n === i ? 0 : -1;
+      });
       counter.textContent = `${pad(i + 1)}/${pad(tiles.length)}`;
       meta.classList.add('fading');
-      setTimeout(() => {
-        const d = tiles[current].dataset;
+      clearTimeout(fadeTimer);
+      fadeTimer = setTimeout(() => {
+        const d = tiles[index].dataset;
         meta.querySelectorAll('[data-k]').forEach(el => { el.innerHTML = d[el.dataset.k]; });
         meta.classList.remove('fading');
-      }, 200);
+      }, 220);
+      return true;
     };
+    tiles.forEach((t, n) => { t.tabIndex = n === 0 ? 0 : -1; });
 
-    const syncActive = () => {
-      const max = strip.scrollWidth - strip.clientWidth;
-      if (max > 0 && strip.scrollLeft >= max - 4) return setActive(tiles.length - 1);
-      const left = strip.getBoundingClientRect().left;
-      let best = 0, bestDist = Infinity;
-      tiles.forEach((t, i) => {
-        const dist = Math.abs(t.getBoundingClientRect().left - left);
-        if (dist < bestDist) { bestDist = dist; best = i; }
-      });
-      setActive(best);
-    };
-
-    // Pinned mode: the section is as tall as the sideways distance, so
-    // 1px of page scroll moves the strip 1px to the left.
-    const maxShift = () => strip.scrollWidth - strip.clientWidth;
-
-    const layout = () => {
-      pinned = wide.matches && !reduceMotion.matches;
-      pin.classList.toggle('is-pinned', pinned);
-      pin.style.height = '';
-      if (pinned) {
-        const stage = pin.firstElementChild.offsetHeight;
-        pin.style.height = stage + maxShift() + 'px';
+    // Mouse wheel and trackpad, anywhere on the desktop landing page
+    let acc = 0, lockUntil = 0, idleTimer;
+    window.addEventListener('wheel', e => {
+      if (!desktop.matches || document.body.classList.contains('drawer-open')) return;
+      e.preventDefault();
+      const delta = Math.abs(e.deltaY) > Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      clearTimeout(idleTimer);
+      idleTimer = setTimeout(() => { acc = 0; }, 180);
+      if (performance.now() < lockUntil) return;
+      acc += delta;
+      if (Math.abs(acc) >= 60) {
+        if (go(index + Math.sign(acc))) lockUntil = performance.now() + 650;
+        acc = 0;
       }
-      onScroll();
-    };
+    }, { passive: false });
 
-    const onScroll = () => {
-      if (!pinned) return;
-      const start = pin.offsetTop - bar.offsetHeight;
-      const y = Math.min(Math.max(window.scrollY - start, 0), maxShift());
-      strip.scrollLeft = y;
-    };
+    // Keyboard
+    document.addEventListener('keydown', e => {
+      if (document.body.classList.contains('drawer-open')) return;
+      if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName)) return;
+      if (e.key === 'ArrowRight' || (desktop.matches && e.key === 'ArrowDown')) { e.preventDefault(); go(index + 1); }
+      if (e.key === 'ArrowLeft' || (desktop.matches && e.key === 'ArrowUp')) { e.preventDefault(); go(index - 1); }
+    });
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', layout);
-    reduceMotion.addEventListener('change', layout);
-    wide.addEventListener('change', layout);
-    window.addEventListener('load', layout);
-    layout();
-
-    strip.addEventListener('scroll', syncActive, { passive: true });
-    tiles.forEach((t, i) => t.addEventListener('mouseenter', () => { if (!dragging) setActive(i); }));
-
-    // Drag with the mouse. In pinned mode dragging moves the page so the
-    // scroll position and the strip stay in sync.
-    let down = false, dragging = false, startX = 0, startStrip = 0, startPage = 0;
-    strip.addEventListener('pointerdown', e => {
-      if (e.pointerType !== 'mouse' || e.button !== 0) return;
-      down = true; dragging = false;
-      startX = e.clientX; startStrip = strip.scrollLeft; startPage = window.scrollY;
+    // Swipe or drag sideways
+    let startX = null, startY = 0, swiped = false;
+    viewport.addEventListener('pointerdown', e => {
+      if (e.pointerType === 'mouse' && e.button !== 0) return;
+      startX = e.clientX; startY = e.clientY; swiped = false;
     });
     window.addEventListener('pointermove', e => {
-      if (!down) return;
+      if (startX === null || swiped) return;
       const dx = e.clientX - startX;
-      if (!dragging && Math.abs(dx) > 4) { dragging = true; strip.classList.add('dragging'); }
-      if (!dragging) return;
-      if (pinned) {
-        const shift = Math.min(Math.max(startStrip - dx, 0), maxShift());
-        window.scrollTo({ top: startPage + (shift - startStrip), behavior: 'instant' });
-      } else {
-        strip.scrollLeft = startStrip - dx;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(e.clientY - startY)) {
+        swiped = true;
+        viewport.classList.add('dragging');
+        go(index + (dx < 0 ? 1 : -1));
       }
     });
-    window.addEventListener('pointerup', () => {
-      down = false;
-      strip.classList.remove('dragging');
-      // Let the click that follows a drag see `dragging`, then reset
-      setTimeout(() => { dragging = false; }, 0);
-    });
-    // A drag should never open a project
-    strip.addEventListener('click', e => { if (dragging) { e.preventDefault(); e.stopPropagation(); } }, true);
+    const endSwipe = () => {
+      startX = null;
+      viewport.classList.remove('dragging');
+      setTimeout(() => { swiped = false; }, 0);
+    };
+    window.addEventListener('pointerup', endSwipe);
+    window.addEventListener('pointercancel', endSwipe);
+
+    // A click on a small tile brings it forward; a click on the active tile opens it
+    strip.addEventListener('click', e => {
+      const tile = e.target.closest('.tile');
+      if (!tile) return;
+      if (swiped) { e.preventDefault(); return; }
+      const n = tiles.indexOf(tile);
+      if (n !== index) { e.preventDefault(); go(n); }
+    }, true);
     strip.addEventListener('dragstart', e => e.preventDefault());
   }
 
@@ -160,6 +151,7 @@
   const drawer = document.getElementById('contactDrawer');
   const form = document.getElementById('contactForm');
   const note = document.getElementById('formNote');
+  const title = document.getElementById('drawerTitle');
   const businessSet = form.querySelector('[data-business]');
   const msgLabel = form.querySelector('[data-msg-label]');
   let mode = 'business';
@@ -169,13 +161,16 @@
     mode = m;
     drawer.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-pressed', String(t.dataset.mode === m)));
     businessSet.hidden = m !== 'business';
+    title.textContent = m === 'business' ? 'Send a request' : 'Get in touch';
     msgLabel.textContent = m === 'business' ? 'Tell me about the opportunity' : 'Your message';
   };
 
   const focusables = () => [...drawer.querySelectorAll('button, input, textarea, a[href]')].filter(el => !el.closest('[hidden]'));
 
-  const openDrawer = trigger => {
+  const openDrawer = (trigger, m) => {
     opener = trigger || document.activeElement;
+    if (m) setMode(m);
+    note.textContent = '';
     document.body.classList.add('drawer-open');
     drawer.setAttribute('aria-hidden', 'false');
     setTimeout(() => form.querySelector('#cf-name').focus({ preventScroll: true }), 300);
@@ -189,7 +184,7 @@
 
   document.querySelectorAll('[data-contact]').forEach(a => a.addEventListener('click', e => {
     e.preventDefault();
-    openDrawer(a);
+    openDrawer(a, a.dataset.contact || null);
   }));
   document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeDrawer));
   drawer.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => setMode(t.dataset.mode)));
@@ -212,7 +207,7 @@
     const topics = data.getAll('topic');
     const lines = [];
     if (mode === 'business' && topics.length) lines.push(`Interested in: ${topics.join(', ')}`, '');
-    lines.push(data.get('message').trim(), '', `${name}`, data.get('email').trim());
+    lines.push(data.get('message').trim(), '', name, data.get('email').trim());
     const subject = mode === 'business' ? `Business enquiry from ${name}` : `Message from ${name}`;
     note.textContent = 'Opening your email app...';
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join('\n'))}`;
