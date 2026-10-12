@@ -2,7 +2,17 @@
 
 Personal portfolio and resume site for Stevie Cain, Agile Digital Delivery Manager and founder of Atomic Web, based in Auckland, New Zealand.
 
-A single static `index.html` with inline CSS and JS. No build step.
+Plain static HTML, CSS and JS. No build step.
+
+## Structure
+
+| File | What it is |
+| --- | --- |
+| `index.html` | Landing page: hero and the selected work carousel |
+| `about.html` | Profile, experience, skills and certifications |
+| `styles.css` | Shared styles for both pages |
+| `main.js` | Carousel, contact drawer and form, scroll reveals |
+| `assets/` | Images (Atomic Web logo) |
 
 ## Run locally
 
@@ -18,10 +28,16 @@ npx serve .
 2. Import this GitHub repository
 3. Leave every setting as default (Framework: Other) and click **Deploy**
 
-## Swapping in a photo
+## Editing
 
-Replace the `SC` monogram in the hero with an image:
+**Project tile links.** Each tile in `index.html` is an `<a class="tile" href="...">`. The Atomic Web tile links to atomicweb.co.nz. The others currently link to their role on `about.html` (for example `about.html#nzte-ddm`). Change the `href` to point at a live site or a project detail page.
+
+**Work panel text.** The Company, Role, Year and summary shown beside the carousel come from each tile's `data-company`, `data-role`, `data-year` and `data-summary` attributes.
+
+**Contact form.** The drawer form opens the visitor's email app with a pre-filled message to steviecain@outlook.com. To change the address, edit `EMAIL` at the top of `main.js`.
+
+**Headshot.** Replace the `SC` monogram in `index.html` with an image:
 
 ```html
-<img class="monogram" src="headshot.jpg" alt="Stevie Cain">
+<img class="monogram" src="assets/headshot.jpg" alt="Stevie Cain">
 ```

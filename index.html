@@ -6,348 +6,25 @@
   <title>Stevie Cain | Agile Digital Delivery Manager</title>
   <meta name="description" content="Stevie Cain is an Agile Digital Delivery Manager and founder of Atomic Web, based in Auckland, New Zealand. Leading high performing teams that think big and ship small.">
   <meta property="og:title" content="Stevie Cain | Agile Digital Delivery Manager">
-  <meta property="og:description" content="Leading high performing teams that think big, ship small and deliver purposeful outcomes at pace.">
+  <meta property="og:description" content="Stevie Cain is an Agile Digital Delivery Manager and founder of Atomic Web, based in Auckland, New Zealand. Leading high performing teams that think big and ship small.">
   <meta name="theme-color" content="#262626">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23262626'/%3E%3Ctext x='50%25' y='56%25' font-family='Arial' font-weight='700' font-size='30' fill='%23F9FAFB' text-anchor='middle' dominant-baseline='middle'%3Es.c%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #262626;
-      --bg-2: #2e2e2e;
-      --text: #F9FAFB;
-      --muted: #979595;
-      --line: rgba(255, 255, 255, 0.12);
-      --side: 26%;
-      --pad: 20px;
-      --font: 'Inter Tight', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-      --c-yellow: #F2C230;
-      --c-blue: #3550FF;
-      --c-teal: #0E4B4B;
-      --c-pink: #FF8FC8;
-      --c-red: #E8343A;
-      --c-ink: #141414;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      font-size: 14px;
-      line-height: 1.35;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    ul { list-style: none; }
-
-    /* Film grain */
-    body::after {
-      content: '';
-      position: fixed; inset: 0; z-index: 100; pointer-events: none;
-      opacity: 0.09;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    }
-
-    /* ---------- Grid scaffolding ---------- */
-    .row {
-      display: grid;
-      grid-template-columns: var(--side) 1fr;
-      border-bottom: 1px solid var(--line);
-    }
-    .cell { padding: var(--pad); min-width: 0; }
-    .cell + .cell { border-left: 1px solid var(--line); }
-
-    .meta { display: flex; flex-direction: column; font-weight: 500; line-height: 1.15; }
-    .meta dt, .label { color: var(--muted); }
-    .meta dd { color: var(--text); }
-    .meta + .meta { margin-top: 14px; }
-
-    /* ---------- Top bar ---------- */
-    .topbar {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(38, 38, 38, 0.88);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .topbar .cell { padding-top: 14px; padding-bottom: 14px; display: flex; align-items: center; }
-    .topbar .cell + .cell { border-left-color: transparent; justify-content: space-between; }
-    .logo { font-weight: 800; font-size: 17px; letter-spacing: -0.04em; }
-    .nav { display: flex; gap: 12px; font-weight: 500; }
-    .nav a { color: var(--muted); transition: color .2s; }
-    .nav a:hover, .nav a.active { color: var(--text); }
-    .contact-link {
-      font-weight: 600;
-      border-bottom: 1px solid currentColor;
-      padding-bottom: 1px;
-    }
-
-    /* ---------- Hero ---------- */
-    .hero .cell {
-      min-height: min(560px, calc(100vh - 260px));
-      display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
-    }
-    .hero-top { display: flex; justify-content: space-between; align-items: flex-start; }
-    .monogram {
-      width: 152px; aspect-ratio: 1;
-      background: linear-gradient(145deg, #dcdcdc 0%, #9a9a9a 100%);
-      color: var(--c-ink);
-      display: grid; place-items: center;
-      font-weight: 800; font-size: 64px; letter-spacing: -0.06em;
-      filter: grayscale(1);
-    }
-    .status-dot {
-      width: 12px; height: 12px; border-radius: 50%; background: var(--text);
-      animation: pulse 2.4s ease-in-out infinite;
-    }
-    @keyframes pulse { 50% { opacity: .35; } }
-    .hero-bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 20px; }
-
-    .statement-wrap { display: flex; gap: 10px; }
-    .arrow { font-size: 22px; line-height: 1; padding-top: 4px; color: var(--text); }
-    .statement {
-      font-weight: 700;
-      font-size: clamp(34px, 4.6vw, 68px);
-      line-height: 0.95;
-      letter-spacing: -0.055em;
-      text-indent: 12%;
-      max-width: 15.5em;
-    }
-    .statement em { font-style: normal; color: var(--muted); }
-    .scroll-cue { color: var(--muted); font-weight: 500; }
-
-    /* ---------- Work strip ---------- */
-    .work .side {
-      display: flex; flex-direction: column; justify-content: space-between; gap: 40px;
-    }
-    .work-meta-top { display: flex; justify-content: space-between; gap: 12px; }
-    .work-meta { transition: opacity .25s ease; }
-    .work-meta.fading { opacity: 0; }
-    .work-summary { color: var(--muted); font-weight: 500; max-width: 30ch; margin-top: 14px; }
-    .shapes { display: flex; align-items: flex-end; gap: 0; }
-    .shape-circle { width: 52%; aspect-ratio: 1; border-radius: 50%; background: #efefef; }
-    .shape-tri {
-      width: 52%; aspect-ratio: 1.15;
-      background: #efefef;
-      clip-path: polygon(50% 0, 100% 100%, 0 100%);
-      margin-left: -4%;
-    }
-    .strip-cell { position: relative; padding-right: 0; }
-    .counter { position: absolute; top: var(--pad); right: var(--pad); font-weight: 600; z-index: 2; }
-    .strip {
-      display: flex; align-items: flex-end; gap: 13px;
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      padding-right: var(--pad);
-      scrollbar-width: none;
-      cursor: grab;
-    }
-    .strip::-webkit-scrollbar { display: none; }
-    .strip.dragging { cursor: grabbing; scroll-snap-type: none; }
-    .strip.dragging .tile { pointer-events: none; }
-
-    .tile {
-      flex: 0 0 auto;
-      width: 250px; height: 250px;
-      scroll-snap-align: start;
-      position: relative; overflow: hidden;
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: 14px;
-      transition: transform .35s cubic-bezier(.2,.7,.2,1);
-    }
-    .tile:hover { transform: translateY(-6px); }
-    .tile.lead { width: min(400px, 46vw); height: min(400px, 46vw); }
-    .tile-kicker { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: -0.01em; line-height: 1; position: relative; z-index: 1; }
-    .tile-big { font-weight: 800; letter-spacing: -0.06em; line-height: 0.85; position: relative; z-index: 1; }
-    .tile-cap { font-weight: 600; font-size: 13px; position: relative; z-index: 1; }
-
-    /* Tile 1: Atomic Web */
-    .t-atomic { background: var(--c-yellow); color: var(--c-ink); }
-    .t-atomic .tile-big { font-size: clamp(44px, 6vw, 84px); }
-    .t-atomic .ball {
-      position: absolute; right: -12%; top: -10%;
-      width: 52%; aspect-ratio: 1; border-radius: 50%;
-      background: var(--c-ink);
-    }
-    .t-atomic .ball::before, .t-atomic .ball::after {
-      content: ''; position: absolute; inset: 0; border-radius: 50%;
-      border: 2px solid var(--c-yellow);
-      clip-path: inset(0 50% 0 0);
-      transform: scale(0.72);
-    }
-    .t-atomic .ball::after { transform: scale(0.72) rotate(180deg); opacity: .6; }
-    .t-atomic .orbit {
-      position: absolute; right: -6%; top: 6%; width: 70%; height: 22%;
-      border: 2px solid var(--c-ink); border-radius: 50%;
-      transform: rotate(-18deg);
-    }
-
-    /* Tile 2: NZTE investment */
-    .t-invest { background: var(--c-blue); color: var(--text); }
-    .t-invest .tile-big { font-size: 62px; }
-    .t-invest .bars { position: absolute; right: 14px; top: 14px; display: flex; align-items: flex-end; gap: 6px; height: 44%; }
-    .t-invest .bars span { width: 14px; background: var(--text); }
-
-    /* Tile 3: COVID-19 site */
-    .t-covid { background: var(--c-teal); color: var(--text); }
-    .t-covid .tile-big { font-size: 78px; }
-    .t-covid .blob {
-      position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%) rotate(-12deg);
-      width: 82%; height: 50%; border-radius: 50%;
-      background: #7FD6C2;
-    }
-    .t-covid .tile-big { color: var(--c-ink); text-align: center; margin-top: -6px; }
-
-    /* Tile 4: micro-sites */
-    .t-micro { background: var(--c-ink); color: var(--c-pink); }
-    .t-micro .stickers { position: absolute; inset: 40px -20px 30px; display: flex; flex-direction: column; justify-content: center; gap: 6px; }
-    .t-micro .stickers span {
-      background: var(--c-pink); color: var(--c-ink);
-      font-weight: 800; font-size: 17px; letter-spacing: -0.03em;
-      padding: 3px 8px; align-self: center; white-space: nowrap;
-    }
-    .t-micro .stickers span:nth-child(odd) { transform: rotate(-9deg); }
-    .t-micro .stickers span:nth-child(even) { transform: rotate(7deg) translateX(14px); }
-
-    /* Tile 5: UK e-commerce */
-    .t-uk { background: var(--c-red); color: var(--text); }
-    .t-uk .tile-big { font-size: 64px; }
-    .t-uk .tri {
-      position: absolute; right: -10%; bottom: -6%; width: 70%; aspect-ratio: 1.1;
-      background: var(--c-ink);
-      clip-path: polygon(50% 0, 100% 100%, 0 100%);
-    }
-    .t-uk .tile-cap { color: var(--text); }
-
-    /* ---------- Section headers ---------- */
-    .section-title {
-      font-weight: 700;
-      font-size: clamp(30px, 3.4vw, 50px);
-      letter-spacing: -0.05em; line-height: 0.95;
-    }
-    .index { color: var(--muted); font-weight: 600; }
-
-    /* ---------- About ---------- */
-    .about-text {
-      font-weight: 600;
-      font-size: clamp(22px, 2.3vw, 34px);
-      line-height: 1.08; letter-spacing: -0.035em;
-      max-width: 26em;
-    }
-    .about-text .muted { color: var(--muted); }
-    .about-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 56px; }
-    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .chip { border: 1px solid var(--line); border-radius: 999px; padding: 5px 11px; font-weight: 500; }
-
-    /* ---------- Experience ---------- */
-    .job .side { display: flex; flex-direction: column; gap: 14px; }
-    .years { font-weight: 700; font-size: 22px; letter-spacing: -0.04em; }
-    .job-title { font-weight: 700; font-size: clamp(22px, 2.2vw, 32px); letter-spacing: -0.045em; line-height: 1; }
-    .job-org { color: var(--muted); font-weight: 500; margin-top: 6px; }
-    .job-points { margin-top: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; max-width: 980px; }
-    .job-points li { position: relative; padding-left: 18px; color: #d6d6d6; line-height: 1.4; }
-    .job-points li::before { content: '↳'; position: absolute; left: 0; color: var(--muted); }
-    .tag-new {
-      display: inline-block; margin-left: 8px; vertical-align: middle;
-      background: var(--c-yellow); color: var(--c-ink);
-      font-size: 11px; font-weight: 700; letter-spacing: 0; padding: 3px 7px; border-radius: 999px;
-      transform: translateY(-3px);
-    }
-
-    /* ---------- Skills ---------- */
-    .skill-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; max-width: 980px; }
-    .skill-cols li {
-      border-top: 1px solid var(--line);
-      padding: 12px 0; font-weight: 600; font-size: 17px; letter-spacing: -0.02em;
-      display: flex; justify-content: space-between; gap: 12px;
-    }
-    .skill-cols li span { color: var(--muted); font-weight: 500; font-size: 14px; text-align: right; }
-
-    /* ---------- Contact ---------- */
-    .contact .cell { padding-top: 60px; padding-bottom: 60px; }
-    .contact .side { display: flex; flex-direction: column; justify-content: flex-end; }
-    .cta {
-      font-weight: 800;
-      font-size: clamp(56px, 11vw, 180px);
-      letter-spacing: -0.07em; line-height: 0.85;
-    }
-    .email {
-      display: inline-block; margin-top: 28px;
-      font-weight: 600; font-size: clamp(20px, 2.4vw, 34px); letter-spacing: -0.035em;
-      border-bottom: 2px solid currentColor;
-      transition: color .2s;
-    }
-    .email:hover { color: var(--c-yellow); }
-
-    footer .cell { display: flex; justify-content: space-between; color: var(--muted); font-weight: 500; }
-    footer .cell + .cell { border-left-color: transparent; }
-
-    /* ---------- Reveal ---------- */
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
-    .reveal.in { opacity: 1; transform: none; }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      .reveal { opacity: 1; transform: none; transition: none; }
-      .status-dot { animation: none; }
-      .tile, .tile:hover { transition: none; transform: none; }
-    }
-
-    /* ---------- Responsive ---------- */
-    @media (max-width: 1100px) {
-      .about-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
-    @media (max-width: 800px) {
-      :root { --pad: 16px; }
-      .row { grid-template-columns: 1fr; }
-      .cell + .cell { border-left: 0; border-top: 1px solid var(--line); }
-      .topbar { grid-template-columns: auto 1fr; }
-      .topbar .cell + .cell { border-top: 0; gap: 16px; }
-      .nav { display: none; }
-      .topbar .cell + .cell { justify-content: flex-end; }
-
-      .hero .cell { min-height: 0; }
-      .hero .side { flex-direction: row; align-items: flex-end; gap: 16px; }
-      .hero-top { flex: 0 0 auto; }
-      .monogram { width: 96px; font-size: 40px; }
-      .hero .side .status-dot { display: none; }
-      .statement { text-indent: 0; }
-      .arrow { display: none; }
-      .hero-bottom { margin-top: 8px; }
-
-      .work .side { gap: 20px; }
-      .shapes { display: none; }
-      .tile { width: 220px; height: 220px; }
-      .tile.lead { width: 280px; height: 280px; }
-      .counter { top: auto; bottom: calc(100% + 16px); }
-      .strip-cell { padding-top: var(--pad); }
-      .work .side { position: relative; }
-
-      .about-grid, .job-points, .skill-cols { grid-template-columns: 1fr; }
-      .about-grid { margin-top: 36px; }
-      .skill-cols li { flex-direction: column; gap: 2px; }
-      .skill-cols li span { text-align: left; }
-      .contact .cell { padding-top: 40px; padding-bottom: 40px; }
-      .email { word-break: break-all; }
-      footer .cell + .cell { border-top: 0; padding-top: 0; }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
   <!-- Top bar -->
   <header class="row topbar">
-    <div class="cell"><a href="#top" class="logo" aria-label="Stevie Cain, home">s.c</a></div>
+    <div class="cell"><a href="index.html" class="logo" aria-label="Stevie Cain, home">s.c</a></div>
     <div class="cell">
       <nav class="nav" aria-label="Primary">
-        <a href="#work" class="active">Work</a>
-        <a href="#about">About</a>
-        <a href="#experience">Experience</a>
+        <a href="index.html" class="active" aria-current="page">Work</a>
+        <a href="about.html">About</a>
       </nav>
-      <a href="#contact" class="contact-link">Contact</a>
+      <a href="mailto:steviecain@outlook.com" class="contact-link" data-contact>Contact</a>
     </div>
   </header>
 
@@ -381,23 +58,24 @@
             <dt>Currently:</dt>
             <dd>Director &amp; Founder, Atomic Web</dd>
           </dl>
-          <a href="#work" class="scroll-cue">Scroll</a>
+          <a href="#workPin" class="scroll-cue">Scroll</a>
         </div>
       </div>
     </section>
 
-    <!-- Selected work -->
+    <!-- Selected work: page scroll drives the strip sideways on desktop -->
+    <div class="work-pin" id="workPin">
     <section class="row work" id="work" aria-label="Selected work">
       <div class="cell side">
         <div>
           <div class="work-meta-top">
             <div class="work-meta" id="workMeta">
-              <dl class="meta"><dt>Client:</dt><dd data-k="client">Atomic Web Limited</dd></dl>
+              <dl class="meta"><dt>Company:</dt><dd data-k="company">Atomic Web Limited</dd></dl>
               <dl class="meta"><dt>Role:</dt><dd data-k="role">Director &amp; Founder</dd></dl>
               <dl class="meta"><dt>Year:</dt><dd data-k="year">2024 to Present</dd></dl>
-              <p class="work-summary" data-k="summary">Founded a New Zealand software company building tools used by sports teams and organisations.</p>
+              <p class="work-summary" data-k="summary">Founded a New Zealand software company building portal software used by sports teams and organisations.</p>
             </div>
-            <a href="#experience" class="contact-link" style="align-self:flex-start;white-space:nowrap">View Detail</a>
+            <a href="about.html#experience" class="contact-link" style="align-self:flex-start;white-space:nowrap">View Detail</a>
           </div>
         </div>
         <div class="shapes" aria-hidden="true">
@@ -408,19 +86,21 @@
 
       <div class="cell strip-cell">
         <span class="counter" id="counter">01/05</span>
-        <div class="strip" id="strip" tabindex="0" aria-label="Projects, scroll horizontally">
+        <div class="strip" id="strip" aria-label="Selected projects">
 
-          <article class="tile lead t-atomic"
-            data-client="Atomic Web Limited" data-role="Director &amp; Founder" data-year="2024 to Present"
-            data-summary="Founded a New Zealand software company building tools used by sports teams and organisations.">
-            <span class="orbit" aria-hidden="true"></span>
-            <span class="ball" aria-hidden="true"></span>
-            <span class="tile-kicker">Atomic Web<br>Sports software</span>
-            <span class="tile-big">Game<br>day,<br>sorted.</span>
-          </article>
+          <a class="tile lead t-atomic" href="https://atomicweb.co.nz" target="_blank" rel="noopener" draggable="false"
+            aria-label="Atomic Web portal software, visit atomicweb.co.nz (opens in a new tab)"
+            data-company="Atomic Web Limited" data-role="Director &amp; Founder" data-year="2024 to Present"
+            data-summary="Founded a New Zealand software company building portal software used by sports teams and organisations.">
+            <img class="logo-mark" src="assets/atomic-web-logo.png" alt="" draggable="false">
+            <span class="tile-kicker">Atomic Web<br>Portal Software</span>
+            <span class="tile-big">Game<br>day,<br><span>sorted.</span></span>
+            <span class="tile-go" aria-hidden="true">↗</span>
+          </a>
 
-          <article class="tile t-invest"
-            data-client="New Zealand Trade &amp; Enterprise" data-role="Digital Delivery Manager" data-year="2021 to Present"
+          <a class="tile t-invest" href="about.html#nzte-ddm" draggable="false"
+            aria-label="NZTE investment platforms, $40m+ facilitated"
+            data-company="New Zealand Trade &amp; Enterprise" data-role="Digital Delivery Manager" data-year="2021 to Present"
             data-summary="End to end delivery of investment platforms aligned with NZTE strategy.">
             <span class="bars" aria-hidden="true"><span style="height:35%"></span><span style="height:60%"></span><span style="height:100%"></span></span>
             <span class="tile-kicker">Investment<br>platforms</span>
@@ -428,29 +108,35 @@
               <div class="tile-big">$40m+</div>
               <div class="tile-cap">investment facilitated into NZ companies</div>
             </div>
-          </article>
+            <span class="tile-go" aria-hidden="true">→</span>
+          </a>
 
-          <article class="tile t-covid"
-            data-client="New Zealand Trade &amp; Enterprise" data-role="Website Delivery Lead" data-year="2019 to 2021"
+          <a class="tile t-covid" href="about.html#nzte-covid" draggable="false"
+            aria-label="COVID-19 Exporters website, 500k pageviews in 12 months"
+            data-company="New Zealand Trade &amp; Enterprise" data-role="Website Delivery Lead" data-year="2019 to 2021"
             data-summary="Spearheaded the COVID-19 response website for New Zealand exporters.">
             <span class="blob" aria-hidden="true"></span>
             <span class="tile-kicker">COVID-19<br>Exporters site</span>
             <span class="tile-big">500k</span>
             <span class="tile-cap">pageviews in 12 months</span>
-          </article>
+            <span class="tile-go" aria-hidden="true">→</span>
+          </a>
 
-          <article class="tile t-micro"
-            data-client="New Zealand Trade &amp; Enterprise" data-role="Marketing Coordinator" data-year="2018 to 2019"
+          <a class="tile t-micro" href="about.html#nzte-marketing" draggable="false"
+            aria-label="NZTE micro-sites and campaigns"
+            data-company="New Zealand Trade &amp; Enterprise" data-role="Marketing Coordinator" data-year="2018 to 2019"
             data-summary="Micro-sites and campaign pages for Expo 2020, NZIBA and the International Trade website.">
             <span class="tile-kicker">Micro-sites &amp;<br>campaigns</span>
             <span class="stickers" aria-hidden="true">
               <span>EXPO 2020®</span><span>NZIBA®</span><span>EXPO 2020®</span><span>TRADE®</span>
             </span>
             <span class="tile-cap" style="color:var(--c-pink)">Telling NZ brand stories</span>
-          </article>
+            <span class="tile-go" aria-hidden="true">→</span>
+          </a>
 
-          <article class="tile t-uk"
-            data-client="UK startup retailers" data-role="Digital Consultant" data-year="2014 to 2018"
+          <a class="tile t-uk" href="about.html#consultant" draggable="false"
+            aria-label="E-commerce and SEO consulting, Oxford UK"
+            data-company="UK startup retailers" data-role="Digital Consultant" data-year="2014 to 2018"
             data-summary="Designed and managed e-commerce platforms and SEO for startup retailers across the UK.">
             <span class="tri" aria-hidden="true"></span>
             <span class="tile-kicker">E-commerce<br>&amp; SEO</span>
@@ -458,199 +144,13 @@
               <div class="tile-big">Oxford,<br>UK</div>
               <div class="tile-cap">Self employed</div>
             </div>
-          </article>
+            <span class="tile-go" aria-hidden="true">→</span>
+          </a>
 
         </div>
       </div>
     </section>
-
-    <!-- About -->
-    <section class="row" id="about">
-      <div class="cell side">
-        <span class="index">(01)</span>
-        <h2 class="section-title" style="margin-top:8px">About</h2>
-      </div>
-      <div class="cell">
-        <p class="about-text reveal">
-          I'm passionate about delivering purposeful outcomes at pace and leading cross-functional teams by inspiring others to grow and be their best.
-          <span class="muted">I build teams around trust, psychological safety and growth mindsets, and embrace a "think big, ship small" approach to unlock potential, deliver meaningful innovation and drive continuous improvement.</span>
-        </p>
-        <div class="about-grid reveal">
-          <dl class="meta">
-            <dt>Focus:</dt>
-            <dd>Digital delivery, people leadership, agile coaching</dd>
-          </dl>
-          <dl class="meta">
-            <dt>Toolkit:</dt>
-            <dd>DevOps, Jira, Confluence, Miro, AI tooling</dd>
-          </dl>
-          <div>
-            <span class="label" style="font-weight:500">Off the clock:</span>
-            <ul class="chips">
-              <li class="chip">Trail running</li>
-              <li class="chip">Padel</li>
-              <li class="chip">Travelling</li>
-              <li class="chip">Vinyl records</li>
-              <li class="chip">Great restaurants</li>
-              <li class="chip">Long walks &amp; epic coffee</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience -->
-    <section id="experience" aria-label="Experience">
-      <div class="row">
-        <div class="cell side">
-          <span class="index">(02)</span>
-          <h2 class="section-title" style="margin-top:8px">Experience</h2>
-        </div>
-        <div class="cell" style="display:flex;align-items:flex-end">
-          <span class="label" style="font-weight:500">12+ years across digital delivery, product and marketing, in New Zealand and the UK.</span>
-        </div>
-      </div>
-
-      <article class="row job">
-        <div class="cell side">
-          <span class="years">2024 to Present</span>
-          <dl class="meta"><dt>Company:</dt><dd>Atomic Web Limited</dd></dl>
-          <dl class="meta"><dt>Location:</dt><dd>New Zealand</dd></dl>
-        </div>
-        <div class="cell reveal">
-          <h3 class="job-title">Director &amp; Founder <span class="tag-new">Now</span></h3>
-          <p class="job-org">Atomic Web Limited</p>
-          <ul class="job-points">
-            <li>Founded and lead Atomic Web, a New Zealand software company.</li>
-            <li>Created software used by sports teams and organisations.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="row job">
-        <div class="cell side">
-          <span class="years">2021 to Present</span>
-          <dl class="meta"><dt>Company:</dt><dd>New Zealand Trade &amp; Enterprise</dd></dl>
-          <dl class="meta"><dt>Location:</dt><dd>Auckland, NZ</dd></dl>
-        </div>
-        <div class="cell reveal">
-          <h3 class="job-title">Digital Delivery Manager</h3>
-          <p class="job-org">New Zealand Trade &amp; Enterprise</p>
-          <ul class="job-points">
-            <li>Lead a high performing digital product delivery squad, delivering efficiently within budget and achieving strategic outcomes.</li>
-            <li>Orchestrate end to end delivery of investment platforms aligned with NZTE strategy, facilitating $40m+ of investment into New Zealand companies.</li>
-            <li>People Leader for seven technical direct reports, unlocking potential through individually tailored approaches.</li>
-            <li>Developed a new competency framework for Software Developers highlighting career growth and professional development.</li>
-            <li>Collaborate with Product Managers and Delivery Leads on timely delivery, risk management and a collaborative team culture.</li>
-            <li>Translate complex technical solutions into clear language for stakeholders across the SDLC.</li>
-            <li>Build strong stakeholder trust and challenge conventional approaches for continuous improvement.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="row job">
-        <div class="cell side">
-          <span class="years">2019 to 2021</span>
-          <dl class="meta"><dt>Company:</dt><dd>New Zealand Trade &amp; Enterprise</dd></dl>
-          <dl class="meta"><dt>Location:</dt><dd>Auckland, NZ</dd></dl>
-        </div>
-        <div class="cell reveal">
-          <h3 class="job-title">COVID-19 Exporters Website Delivery Lead</h3>
-          <p class="job-org">New Zealand Trade &amp; Enterprise</p>
-          <ul class="job-points">
-            <li>Spearheaded the NZTE COVID-19 response website, generating 500k pageviews over 12 months.</li>
-            <li>Enhanced the platform with new features and updates alongside stakeholders across multiple time zones.</li>
-            <li>Collaborated with agency developers and internal teams to ship features that made life easier for end users.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="row job">
-        <div class="cell side">
-          <span class="years">2018 to 2019</span>
-          <dl class="meta"><dt>Company:</dt><dd>New Zealand Trade &amp; Enterprise</dd></dl>
-          <dl class="meta"><dt>Location:</dt><dd>Auckland, NZ</dd></dl>
-        </div>
-        <div class="cell reveal">
-          <h3 class="job-title">Marketing Coordinator</h3>
-          <p class="job-org">New Zealand Trade &amp; Enterprise</p>
-          <ul class="job-points">
-            <li>Led campaigns and resources helping New Zealand exporters tell their brand stories to the world.</li>
-            <li>Closed capability gaps by leading micro-site and campaign page builds for Expo 2020, NZIBA, the Regional Business Partner Network and the International Trade website.</li>
-            <li>Worked with NZTE's regional and global teams to plan and deliver in-market goals and activities.</li>
-          </ul>
-        </div>
-      </article>
-
-      <article class="row job">
-        <div class="cell side">
-          <span class="years">2014 to 2018</span>
-          <dl class="meta"><dt>Company:</dt><dd>Self Employed</dd></dl>
-          <dl class="meta"><dt>Location:</dt><dd>Oxford, UK</dd></dl>
-        </div>
-        <div class="cell reveal">
-          <h3 class="job-title">Digital Consultant</h3>
-          <p class="job-org">Self Employed</p>
-          <ul class="job-points">
-            <li>Designed and managed e-commerce platforms for startup retailers throughout the UK, driving online sales growth.</li>
-            <li>Provided ongoing website maintenance and support for optimal performance.</li>
-            <li>Implemented SEO best practice, significantly improving rankings and organic traffic.</li>
-            <li>Ran detailed client consultations to tailor functionality and design to each business.</li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
-    <!-- Skills -->
-    <section class="row" aria-label="Skills">
-      <div class="cell side">
-        <span class="index">(03)</span>
-        <h2 class="section-title" style="margin-top:8px">Skills</h2>
-      </div>
-      <div class="cell reveal">
-        <ul class="skill-cols">
-          <li>Scrum &amp; Agile Methodology <span>Certified</span></li>
-          <li>Software Delivery Tools <span>DevOps, Jira, Confluence, Miro, AI</span></li>
-          <li>People Leadership &amp; Coaching</li>
-          <li>Road Mapping &amp; People Allocation</li>
-          <li>Software Development Life Cycle</li>
-          <li>Cross-Team Collaboration</li>
-          <li>Simplifying Complex Problems</li>
-          <li>Continuous Improvement</li>
-          <li>Operating Budget Management</li>
-          <li>Change Management</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Certifications -->
-    <section class="row" aria-label="Certifications">
-      <div class="cell side">
-        <span class="index">(04)</span>
-        <h2 class="section-title" style="margin-top:8px">Certifications</h2>
-      </div>
-      <div class="cell reveal">
-        <ul class="skill-cols">
-          <li>ICAgile Certified Professional <span>Agile Project &amp; Delivery Mgmt</span></li>
-          <li>Certified SAFe Practitioner <span>Scrum Methodology</span></li>
-          <li>AI mini-MBA <span>Section AI</span></li>
-          <li>Generative AI Business Strategy <span>Section AI</span></li>
-          <li>Coaching &amp; Feedback for Impact <span>NZTE</span></li>
-          <li>Contentful CMS <span>Certified Professional</span></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section class="row contact" id="contact">
-      <div class="cell side">
-        <dl class="meta"><dt>Based:</dt><dd>Auckland, New Zealand</dd></dl>
-      </div>
-      <div class="cell">
-        <h2 class="cta reveal">Let's talk.</h2>
-        <a class="email" href="mailto:steviecain@outlook.com">steviecain@outlook.com</a>
-      </div>
-    </section>
+    </div>
   </main>
 
   <footer class="row">
@@ -658,81 +158,6 @@
     <div class="cell"><span>Auckland, NZ</span><a href="#top">Back to top ↑</a></div>
   </footer>
 
-  <script>
-    document.getElementById('yr').textContent = new Date().getFullYear();
-
-    // Reveal on scroll
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // Work strip: counter + side meta follow the leading tile
-    const strip = document.getElementById('strip');
-    const tiles = [...strip.querySelectorAll('.tile')];
-    const counter = document.getElementById('counter');
-    const meta = document.getElementById('workMeta');
-    const pad = n => String(n).padStart(2, '0');
-    let current = 0;
-
-    function setActive(i) {
-      if (i === current) return;
-      current = i;
-      counter.textContent = `${pad(i + 1)}/${pad(tiles.length)}`;
-      meta.classList.add('fading');
-      setTimeout(() => {
-        const d = tiles[i].dataset;
-        meta.querySelectorAll('[data-k]').forEach(el => { el.innerHTML = d[el.dataset.k]; });
-        meta.classList.remove('fading');
-      }, 200);
-    }
-
-    strip.addEventListener('scroll', () => {
-      const left = strip.getBoundingClientRect().left;
-      let best = 0, bestDist = Infinity;
-      tiles.forEach((t, i) => {
-        const dist = Math.abs(t.getBoundingClientRect().left - left);
-        if (dist < bestDist) { bestDist = dist; best = i; }
-      });
-      if (strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 4) best = tiles.length - 1;
-      setActive(best);
-    }, { passive: true });
-
-    tiles.forEach((t, i) => t.addEventListener('mouseenter', () => setActive(i)));
-
-    // Drag to scroll (mouse)
-    let down = false, startX = 0, startScroll = 0, moved = false;
-    strip.addEventListener('pointerdown', e => {
-      if (e.pointerType !== 'mouse') return;
-      down = true; moved = false; startX = e.clientX; startScroll = strip.scrollLeft;
-    });
-    window.addEventListener('pointermove', e => {
-      if (!down) return;
-      const dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) { moved = true; strip.classList.add('dragging'); }
-      strip.scrollLeft = startScroll - dx;
-    });
-    window.addEventListener('pointerup', () => { down = false; strip.classList.remove('dragging'); });
-
-    // Vertical wheel scrolls the strip sideways while hovering it
-    strip.addEventListener('wheel', e => {
-      if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
-      const atStart = strip.scrollLeft <= 0 && e.deltaY < 0;
-      const atEnd = strip.scrollLeft + strip.clientWidth >= strip.scrollWidth - 2 && e.deltaY > 0;
-      if (atStart || atEnd) return;
-      e.preventDefault();
-      strip.scrollLeft += e.deltaY;
-    }, { passive: false });
-
-    // Highlight the nav link for the section in view
-    const links = [...document.querySelectorAll('.nav a')];
-    const navIo = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
-      });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    ['work', 'about', 'experience'].forEach(id => navIo.observe(document.getElementById(id)));
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
