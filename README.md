@@ -14,6 +14,8 @@ Plain static HTML, CSS and JS. No build step.
 | `main.js` | Work carousel (wheel, swipe, drag, arrow keys) and the contact drawer |
 | `assets/` | Images (Atomic Web logo) |
 
+Working on this site with Claude Code? `CLAUDE.md` has the design system, how each part works and the content rules.
+
 ## Run locally
 
 Open `index.html` in a browser, or serve it:
