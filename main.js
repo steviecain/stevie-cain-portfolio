@@ -243,7 +243,7 @@
           <div class="checks">
             <label><input type="checkbox" name="topic" value="Leadership role"><span>Leadership role</span></label>
             <label><input type="checkbox" name="topic" value="Consulting"><span>Consulting</span></label>
-            <label><input type="checkbox" name="topic" value="Atomic Web software"><span>Atomic Web software</span></label>
+            <label><input type="checkbox" name="topic" value="Atomic Web Portal"><span>Atomic Web Portal</span></label>
             <label><input type="checkbox" name="topic" value="Speaking"><span>Speaking</span></label>
           </div>
         </fieldset>

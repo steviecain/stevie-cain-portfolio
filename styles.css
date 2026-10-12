@@ -178,7 +178,7 @@ body.page-about::after { opacity: 0.16; mix-blend-mode: multiply; }
 .t-atomic { background: #000; color: var(--text); }
 .t-atomic .logo-mark { position: absolute; right: -4%; top: -4%; width: 56%; height: auto; pointer-events: none; }
 .t-atomic .tile-kicker { color: var(--c-green); }
-.t-atomic .tile-big { font-size: 21cqw; }
+.t-atomic .tile-big { font-size: 16cqw; }
 .t-atomic .tile-big span { color: var(--c-green); }
 
 .t-invest { background: var(--c-blue); color: #F9FAFB; }
