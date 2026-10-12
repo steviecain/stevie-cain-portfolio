@@ -45,3 +45,7 @@ npx serve .
 ```html
 <img class="monogram" src="assets/headshot.jpg" alt="Stevie Cain">
 ```
+
+## Credits
+
+The animated chapter icons on the About page are from [Moving Icons](https://www.movingicons.dev) (MIT License, Copyright (c) 2024 jis3r), based on [Lucide](https://lucide.dev) (ISC License). They are inlined as SVG in `about.html`, with their animations in `styles.css`.

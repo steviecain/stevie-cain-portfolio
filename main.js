@@ -137,6 +137,9 @@
         panel.style.transform = `translateY(${rest + (open - rest) * t}px)`;
         panel.style.setProperty('--dim', clamp(p - i, 0, 1).toFixed(3));
       });
+      // The open chapter plays its icon animation
+      const current = Math.round(p);
+      panels.forEach((panel, i) => panel.classList.toggle('is-current', i === current));
     };
 
     const layout = () => {
@@ -147,6 +150,7 @@
         panel.style.transform = '';
         panel.style.height = '';
         panel.style.zIndex = '';
+        panel.classList.remove('is-current');
       });
       if (!on) return;
       stageH = stage.clientHeight;
